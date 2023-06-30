@@ -1,0 +1,127 @@
+import styled from "@emotion/styled";
+import { useState } from "react";
+import Link from "next/link";
+import axios from "axios";
+
+const MainContainer = styled.div`
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)),
+    url("/mainimg2.jpg");
+  background-size: cover;
+`;
+
+const LoginDiv = styled.div`
+  width: 50%;
+  max-width: 360px;
+  margin: 0 auto;
+
+  height: 100vh;
+  padding-top: 10rem;
+  form {
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0px 19px 38px rgba(0, 0, 0, 0.03),
+      0px 15px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.92);
+    border-radius: 8px;
+
+    input {
+      border-radius: 10px;
+      border: 1px solid #c6c6c6;
+      padding: 5px;
+      margin-bottom: 10px;
+
+      &:active,
+      &:focus {
+        outline: none;
+      }
+    }
+    button {
+      border-radius: 15px;
+      padding: 5px 10px;
+      background-color: black;
+      color: white;
+
+      margin-top: 10px;
+      &:hover {
+        background-color: gray;
+        color: black;
+      }
+    }
+    label {
+      margin-top: 20px;
+      font-size: 80%;
+      text-align: center;
+    }
+    @media (max-width: 756px) {
+      width: 100%;
+    }
+  }
+  @media (max-width: 756px) {
+    width: 90%;
+  }
+`;
+
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("/api/login", {
+        email,
+        password,
+      });
+
+      // 로그인 성공 시 처리
+      console.log(response.data); // 예: 토큰 저장, 페이지 이동 등
+    } catch (error) {
+      console.error("Failed to login:", error.response.data);
+      // 로그인 실패 시 처리
+    }
+  };
+
+  return (
+    <>
+      <MainContainer>
+        <LoginDiv>
+          <form onSubmit={handleLogin}>
+            <div className="text-center" style={{ paddingBottom: "1rem" }}>
+              <h1 className="font-bold text-4xl">
+                ETRI
+                <br />
+                재난안전
+              </h1>
+            </div>
+
+            <input
+              type="email"
+              value={email}
+              placeholder="이메일"
+              onChange={(e) => setEmail(e.currentTarget.value)}
+            />
+
+            <input
+              type="password"
+              value={password}
+              placeholder="비밀번호"
+              onChange={(e) => setPassword(e.currentTarget.value)}
+            />
+            <button type="submit">로그인</button>
+            <label>
+              계정이 없으신가요?{" "}
+              <Link href="/user/register" style={{ color: "#0070f3" }}>
+                가입하기
+              </Link>
+            </label>
+          </form>
+        </LoginDiv>
+      </MainContainer>
+    </>
+  );
+}
+
+export default Login;
