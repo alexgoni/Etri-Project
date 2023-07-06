@@ -23,7 +23,8 @@
     "react-dom": "18.2.0",
     "react-plotly.js": "^2.6.0",
     "react-scroll": "^1.8.9",
-    "three": "^0.153.0"
+    "three": "^0.153.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",

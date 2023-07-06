@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Greenhouse from "@/components/Greenhouse.jsx";
 import { Canvas } from "@react-three/fiber";
 import { Stage, OrbitControls } from "@react-three/drei";
@@ -85,7 +84,7 @@ function Section2() {
                 teams have richer contextual information to rapidly respond to
                 requests, incidents, and changes.
               </p>
-              <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
+              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
                 <Link href="/menu/chart">Go To</Link>
               </button>
             </div>
@@ -114,7 +113,6 @@ function Section3() {
         <section className="bg-gray-100 dark:bg-gray-900">
           <div className="gap-10 items-center py-8 px-4 mx-auto max-w-screen-xl grid grid-cols-[45%_45%] lg:py-16 lg:px-6">
             <div>
-              {" "}
               <Canvas>
                 <Stage environment="city" intensity={0.6}>
                   <Greenhouse args={[2, 2, 2]} scale={[1, 1, 1]} />
@@ -133,7 +131,7 @@ function Section3() {
                 teams have richer contextual information to rapidly respond to
                 requests, incidents, and changes.
               </p>
-              <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
+              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
                 <Link href="/menu/three">Go To</Link>
               </button>
             </div>
@@ -171,7 +169,7 @@ function Section4() {
                 teams have richer contextual information to rapidly respond to
                 requests, incidents, and changes.
               </p>
-              <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
+              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
                 <Link href="/menu/vrar">Go To</Link>
               </button>
             </div>

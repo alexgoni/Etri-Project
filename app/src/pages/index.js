@@ -6,12 +6,44 @@ import {
   Section3,
   Section4,
 } from "@/components/main/Sections";
+import Link from "next/link";
+import axios from "axios";
 
 function Home() {
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
   const section3Ref = useRef(null);
   const section4Ref = useRef(null);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  function getCookie(name) {
+    const cookieString = document.cookie;
+    const cookies = cookieString.split("; ");
+    for (const cookie of cookies) {
+      const [cookieName, cookieValue] = cookie.split("=");
+      if (cookieName === name) {
+        return decodeURIComponent(cookieValue);
+      }
+    }
+    return null;
+  }
+
+  useEffect(() => {
+    const sessionId = getCookie("sessionId");
+    if (sessionId) {
+      // 서버로 세션 ID를 전송하여 유효성을 확인하는 API 요청 (예: /api/check-session)
+      axios
+        .get("/api/check-session", { params: { sessionId } })
+        .then((response) => {
+          const { isLoggedIn } = response.data; // 서버에서 전달된 로그인 상태 정보
+          setIsLoggedIn(isLoggedIn);
+        })
+        .catch((error) => {
+          console.error("Failed to check session:", error);
+        });
+    }
+  }, []);
 
   const handleMouseEnter = (ref) => {
     const sectionElement = ref.current;
@@ -66,6 +98,7 @@ function Home() {
                 duration={800}
                 onMouseEnter={() => handleMouseEnter(section1Ref)}
                 className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                style={{ cursor: "pointer" }}
               >
                 ETRI 재난안전
               </ScrollLink>
@@ -92,6 +125,7 @@ function Home() {
                 duration={800}
                 onMouseEnter={() => handleMouseEnter(section2Ref)}
                 className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                style={{ cursor: "pointer" }}
               >
                 Dashboard & Plotly
               </ScrollLink>
@@ -102,6 +136,7 @@ function Home() {
                 duration={800}
                 onMouseEnter={() => handleMouseEnter(section3Ref)}
                 className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                style={{ cursor: "pointer" }}
               >
                 3D Data Visualization
               </ScrollLink>
@@ -111,10 +146,20 @@ function Home() {
                 smooth={true}
                 duration={800}
                 onMouseEnter={() => handleMouseEnter(section4Ref)}
-                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                style={{ cursor: "pointer" }}
               >
                 VR & AR
               </ScrollLink>
+
+              {isLoggedIn && (
+                <Link
+                  href="/menu/admin"
+                  className="block mt-4 lg:inline-block lg:mt-0 text-red-300 hover:text-white"
+                >
+                  Admin
+                </Link>
+              )}
             </div>
             <div>
               <a
@@ -174,6 +219,10 @@ function Home() {
           color: whitesmoke;
           padding: 3rem;
           opacity: ${opacity};
+        }
+
+        nav {
+          z-index: 2;
         }
 
         section {

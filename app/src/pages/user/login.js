@@ -1,122 +1,146 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const MainContainer = styled.div`
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)),
-    url("/mainimg2.jpg");
+  background-image: url("/black.jpg");
   background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const LoginDiv = styled.div`
-  width: 50%;
-  max-width: 360px;
-  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
 
-  height: 100vh;
-  padding-top: 10rem;
   form {
-    width: 100%;
-    padding: 20px;
-    box-shadow: 0px 19px 38px rgba(0, 0, 0, 0.03),
-      0px 15px 12px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.92);
-    border-radius: 8px;
-
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 300px;
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      background-image: url("/profile.jfif");
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+    }
     input {
-      border-radius: 10px;
-      border: 1px solid #c6c6c6;
-      padding: 5px;
       margin-bottom: 10px;
+      width: 300px;
+      height: 25px;
+      border-radius: 2px;
+      text-indent: 1.8rem;
 
       &:active,
       &:focus {
         outline: none;
       }
     }
+    .email {
+      background-image: url("/person.png");
+      background-repeat: no-repeat;
+      background-size: 22px;
+      background-position: 3px center;
+    }
+    .password {
+      background-image: url("/lock.png");
+      background-repeat: no-repeat;
+      background-size: 22px;
+      background-position: 3px center;
+    }
     button {
-      border-radius: 15px;
-      padding: 5px 10px;
+      display: block;
+      width: 300px;
+      padding: 7px;
       background-color: black;
       color: white;
-
-      margin-top: 10px;
-      &:hover {
-        background-color: gray;
-        color: black;
-      }
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 3px;
     }
     label {
-      margin-top: 20px;
+      color: white;
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 12px;
       font-size: 80%;
       text-align: center;
     }
-    @media (max-width: 756px) {
-      width: 100%;
+    .error-msg {
+      color: red;
+      margin-top: 1rem;
     }
-  }
-  @media (max-width: 756px) {
-    width: 90%;
   }
 `;
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [message, setMessage] = useState("");
+  const router = useRouter();
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post("/api/login", {
         email,
         password,
       });
-
-      // 로그인 성공 시 처리
-      console.log(response.data); // 예: 토큰 저장, 페이지 이동 등
+      router.push("/");
     } catch (error) {
-      console.error("Failed to login:", error.response.data);
-      // 로그인 실패 시 처리
+      console.error("Failed to login:", error.response.data.me);
+      setMessage(error.response.data.message);
+      setEmail("");
+      setPassword("");
     }
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage("");
+    }, 5000);
+  }, [message]);
 
   return (
     <>
       <MainContainer>
         <LoginDiv>
           <form onSubmit={handleLogin}>
-            <div className="text-center" style={{ paddingBottom: "1rem" }}>
-              <h1 className="font-bold text-4xl">
-                ETRI
-                <br />
-                재난안전
-              </h1>
-            </div>
+            <div className="profile-image"></div>
 
             <input
+              className="email"
               type="email"
               value={email}
-              placeholder="이메일"
+              placeholder="Email"
               onChange={(e) => setEmail(e.currentTarget.value)}
+              required
             />
 
             <input
+              className="password"
               type="password"
               value={password}
-              placeholder="비밀번호"
+              placeholder="Password"
               onChange={(e) => setPassword(e.currentTarget.value)}
+              required
             />
-            <button type="submit">로그인</button>
+            <button type="submit">Login</button>
             <label>
-              계정이 없으신가요?{" "}
-              <Link href="/user/register" style={{ color: "#0070f3" }}>
-                가입하기
-              </Link>
+              <Link href="/user/register">Sign Up</Link>
+              <Link href="/user/findpassword">Forgot Password?</Link>
             </label>
+            {message != "" && <p className="error-msg">{message}</p>}
           </form>
         </LoginDiv>
       </MainContainer>
