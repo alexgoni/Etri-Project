@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import connection from "./DB";
 
 export default function login(req, res) {
@@ -17,25 +18,15 @@ export default function login(req, res) {
         res.status(401).json({ message: "Invalid email or password." });
       }
 
-      const sessionQuery = `SELECT session_id FROM sessions WHERE username = ?`;
-      connection.query(sessionQuery, [email], (err, result) => {
-        if (err) {
-          console.error("Failed to retrieve session ID:", err);
-          res
-            .status(500)
-            .json({ message: "Failed to get session ID. Please try again." });
-          return;
-        }
+      const user = result[0];
 
-        const sessionId = result[0].session_id;
+      // JWT 생성
+      const secretKey = `${process.env.NEXT_PUBLIC_SECRET_KEY}`;
+      const token = jwt.sign({ email: user.username }, secretKey);
 
-        // login 성공시 쿠키 발행
-        res.setHeader(
-          "Set-Cookie",
-          `sessionId=${sessionId}; Path=/; Max-Age=3600`
-        );
-        res.status(200).json({ message: "Login successful!" });
-      });
+      // login 성공시 쿠키 발행
+      res.setHeader("Set-Cookie", `token=${token}; Path=/; Max-Age=3600`);
+      res.status(200).json({ message: "Login successful!" });
     });
   } else {
     res.status(405).end();

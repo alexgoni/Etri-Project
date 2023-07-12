@@ -30,17 +30,15 @@ function Home() {
   }
 
   useEffect(() => {
-    const sessionId = getCookie("sessionId");
-    if (sessionId) {
-      // 서버로 세션 ID를 전송하여 유효성을 확인하는 API 요청 (예: /api/check-session)
+    const token = getCookie("token");
+    if (token) {
       axios
-        .get("/api/check-session", { params: { sessionId } })
+        .get("/api/check-token", { params: { token } })
         .then((response) => {
-          const { isLoggedIn } = response.data; // 서버에서 전달된 로그인 상태 정보
-          setIsLoggedIn(isLoggedIn);
+          setIsLoggedIn(response.data.isLoggedIn);
         })
         .catch((error) => {
-          console.error("Failed to check session:", error);
+          console.error("Failed to verify token", error);
         });
     }
   }, []);
@@ -162,12 +160,12 @@ function Home() {
               )}
             </div>
             <div>
-              <a
+              <Link
                 href="/user/login"
                 className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
               >
                 Login
-              </a>
+              </Link>
             </div>
           </div>
         </nav>

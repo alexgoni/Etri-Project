@@ -41,3 +41,9 @@ export default function register(req, res) {
     res.status(405).json({ message: "Method Not Allowed" });
   }
 }
+
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};

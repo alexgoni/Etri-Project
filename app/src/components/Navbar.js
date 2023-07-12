@@ -18,18 +18,15 @@ function Navbar() {
   }
 
   useEffect(() => {
-    const sessionId = getCookie("sessionId");
-    if (sessionId) {
-      // 서버로 세션 ID를 전송하여 유효성을 확인하는 API 요청
+    const token = getCookie("token");
+    if (token) {
       axios
-        .get("/api/check-session", { params: { sessionId } })
+        .get("/api/check-token", { params: { token } })
         .then((response) => {
-          const { isLoggedIn } = response.data;
-          setIsLoggedIn(isLoggedIn);
+          setIsLoggedIn(response.data.isLoggedIn);
         })
         .catch((error) => {
-          console.error("Failed to check session:", error);
-          setIsLoggedIn(false);
+          console.error("Failed to verify token", error);
         });
     }
   }, []);
