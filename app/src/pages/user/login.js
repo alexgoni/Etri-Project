@@ -96,6 +96,7 @@ function Login() {
         email,
         password,
       });
+      alert("Login successful");
       router.push("/");
     } catch (error) {
       console.error("Failed to login:", error.response.data.me);

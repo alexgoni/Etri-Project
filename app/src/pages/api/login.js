@@ -20,12 +20,23 @@ export default function login(req, res) {
 
       const user = result[0];
 
-      // JWT 생성
-      const secretKey = `${process.env.NEXT_PUBLIC_SECRET_KEY}`;
-      const token = jwt.sign({ email: user.username }, secretKey);
+      // Access Token 생성
+      const accessKey = `${process.env.NEXT_PUBLIC_ACCESS_TOKEN_SECRET}`; // Access Token에 사용할 비밀 키
+      const accessToken = jwt.sign({ email: user.username }, accessKey, {
+        expiresIn: "30m",
+      });
 
-      // login 성공시 쿠키 발행
-      res.setHeader("Set-Cookie", `token=${token}; Path=/; Max-Age=3600`);
+      // Refresh Token 생성
+      const refreshKey = `${process.env.NEXT_PUBLIC_REFRESH_TOKEN_SECRET}`; // Refresh Token에 사용할 비밀 키
+      const refreshToken = jwt.sign({ email: user.username }, refreshKey, {
+        expiresIn: "14d",
+      });
+
+      // 로그인 성공 시 토큰 발행
+      res.setHeader("Set-Cookie", [
+        `accessToken=${accessToken}; Path=/; Max-Age=1800`,
+        `refreshToken=${refreshToken}; Path=/; Max-Age=1209600`,
+      ]);
       res.status(200).json({ message: "Login successful!" });
     });
   } else {

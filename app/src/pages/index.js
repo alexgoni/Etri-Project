@@ -7,7 +7,7 @@ import {
   Section4,
 } from "@/components/main/Sections";
 import Link from "next/link";
-import axios from "axios";
+import Authentication from "@/components/authentication";
 
 function Home() {
   const section1Ref = useRef(null);
@@ -16,32 +16,6 @@ function Home() {
   const section4Ref = useRef(null);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  function getCookie(name) {
-    const cookieString = document.cookie;
-    const cookies = cookieString.split("; ");
-    for (const cookie of cookies) {
-      const [cookieName, cookieValue] = cookie.split("=");
-      if (cookieName === name) {
-        return decodeURIComponent(cookieValue);
-      }
-    }
-    return null;
-  }
-
-  useEffect(() => {
-    const token = getCookie("token");
-    if (token) {
-      axios
-        .get("/api/check-token", { params: { token } })
-        .then((response) => {
-          setIsLoggedIn(response.data.isLoggedIn);
-        })
-        .catch((error) => {
-          console.error("Failed to verify token", error);
-        });
-    }
-  }, []);
 
   const handleMouseEnter = (ref) => {
     const sectionElement = ref.current;
@@ -72,6 +46,7 @@ function Home() {
 
   return (
     <>
+      <Authentication setIsLoggedIn={setIsLoggedIn} />
       <div className="main-container">
         <div className="hero">
           <div className="hero-background" />

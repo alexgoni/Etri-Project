@@ -1,12 +1,12 @@
 import jwt from "jsonwebtoken";
 
 export default function checkToken(req, res) {
-  const { token } = req.query;
+  const { accessToken } = req.query;
 
   // JWT 검증
   try {
-    const secretKey = `${process.env.NEXT_PUBLIC_SECRET_KEY}`;
-    const decode = jwt.verify(token, secretKey);
+    const secretKey = `${process.env.NEXT_PUBLIC_ACCESS_KEY}`;
+    const decode = jwt.verify(accessToken, secretKey);
     //console.log(decode);
     // 유효한 JWT인 경우
     res.status(200).json({ isLoggedIn: true, decode });

@@ -1,38 +1,13 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import Authentication from "./authentication";
 
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  function getCookie(name) {
-    const cookieString = document.cookie;
-    const cookies = cookieString.split("; ");
-    for (const cookie of cookies) {
-      const [cookieName, cookieValue] = cookie.split("=");
-      if (cookieName === name) {
-        return decodeURIComponent(cookieValue);
-      }
-    }
-    return null;
-  }
-
-  useEffect(() => {
-    const token = getCookie("token");
-    if (token) {
-      axios
-        .get("/api/check-token", { params: { token } })
-        .then((response) => {
-          setIsLoggedIn(response.data.isLoggedIn);
-        })
-        .catch((error) => {
-          console.error("Failed to verify token", error);
-        });
-    }
-  }, []);
-
   return (
     <>
+      <Authentication setIsLoggedIn={setIsLoggedIn} />
       <nav className="flex items-center justify-between flex-wrap bg-black p-6 sticky top-0">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <svg
