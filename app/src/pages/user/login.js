@@ -84,9 +84,18 @@ const LoginDiv = styled.div`
   }
 `;
 
+const Select = styled.select`
+  margin-bottom: 10px;
+  width: 300px;
+  height: 25px;
+  border-radius: 2px;
+  text-indent: 1.8rem;
+`;
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [building, setBuilding] = useState("");
   const [message, setMessage] = useState("");
   const router = useRouter();
   const handleLogin = async (e) => {
@@ -95,8 +104,8 @@ function Login() {
       const response = await axios.post("/api/login", {
         email,
         password,
+        building,
       });
-      alert("Login successful");
       router.push("/");
     } catch (error) {
       console.error("Failed to login:", error.response.data.me);
@@ -136,6 +145,21 @@ function Login() {
               onChange={(e) => setPassword(e.currentTarget.value)}
               required
             />
+
+            <Select value={building} onChange={(e) => setBuilding(e.currentTarget.value)}>
+              <option value="">Select a building</option>
+              <option value="1">빌딩1</option>
+              <option value="2">빌딩2</option>
+              <option value="3">빌딩3</option>
+              <option value="4">빌딩4</option>
+              <option value="5">빌딩5</option>
+              <option value="6">빌딩6</option>
+              <option value="7">빌딩7</option>
+              <option value="8">빌딩8</option>
+              <option value="9">빌딩9</option>
+              <option value="10">빌딩10</option>
+            </Select>
+
             <button type="submit">Login</button>
             <label>
               <Link href="/user/register">Sign Up</Link>

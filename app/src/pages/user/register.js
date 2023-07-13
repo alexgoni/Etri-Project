@@ -71,10 +71,19 @@ const LoginDiv = styled.div`
   }
 `;
 
+const Select = styled.select`
+  margin-bottom: 10px;
+  width: 300px;
+  height: 25px;
+  border-radius: 2px;
+  text-indent: 1.8rem;
+`;
+
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPW] = useState("");
   const [PWConfirm, setPWConfirm] = useState("");
+  const [building, setBuilding] = useState("");
 
   const router = useRouter();
   const handleSubmit = async (e) => {
@@ -97,6 +106,7 @@ function Register() {
       const response = await axios.post("/api/register", {
         email,
         password,
+        building,
       });
       alert("Registration successful");
       router.push("/user/login");
@@ -135,6 +145,21 @@ function Register() {
               placeholder="Password Confirm"
               onChange={(e) => setPWConfirm(e.currentTarget.value)}
             />
+
+            <Select value={building} onChange={(e) => setBuilding(e.currentTarget.value)}>
+              <option value="">Select a building</option>
+              <option value="1">빌딩1</option>
+              <option value="2">빌딩2</option>
+              <option value="3">빌딩3</option>
+              <option value="4">빌딩4</option>
+              <option value="5">빌딩5</option>
+              <option value="6">빌딩6</option>
+              <option value="7">빌딩7</option>
+              <option value="8">빌딩8</option>
+              <option value="9">빌딩9</option>
+              <option value="10">빌딩10</option>
+            </Select>
+
             <button>Register</button>
           </form>
         </LoginDiv>
