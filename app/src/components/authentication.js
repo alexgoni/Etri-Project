@@ -36,7 +36,7 @@ function Authentication({ setIsLoggedIn }) {
           console.error("Failed to refresh token", error);
         });
     }
-  }, []);
+  }, [setIsLoggedIn]);
 
   return null;
 }
