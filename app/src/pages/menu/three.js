@@ -7,12 +7,102 @@ function three() {
   return (
     <>
       <Navbar />
-      <Canvas style={{ height: "100vh" }}>
-        <Stage environment="city" intensity={0.6}>
-          <Paprika />
-        </Stage>
-        <OrbitControls />
-      </Canvas>
+      <div style={{ display: "flex", overflowX: "scroll" }}>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+      </div>
+      <div style={{ display: "flex", overflowX: "scroll" }}>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+      </div>
+      <div style={{ display: "flex", overflowX: "scroll" }}>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+        <Canvas style={{ width: "100%" }}>
+          <Stage environment="city" intensity={0.6}>
+            <Paprika />
+          </Stage>
+          <OrbitControls />
+        </Canvas>
+      </div>
     </>
   );
 }

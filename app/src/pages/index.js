@@ -1,13 +1,30 @@
 import { useState, useRef, useEffect } from "react";
 import { animateScroll as scroll } from "react-scroll";
-import {
-  Section1,
-  Section2,
-  Section3,
-  Section4,
-} from "@/components/main/Sections";
 import Authentication from "@/components/authentication";
 import ScrollNavBar from "@/components/ScrollNavbar";
+import dynamic from "next/dynamic";
+import { useGLTF } from "@react-three/drei";
+
+const Section1 = dynamic(
+  () => import("@/components/main/Sections").then((module) => module.Section1),
+  { ssr: false }
+);
+const Section2 = dynamic(
+  () => import("@/components/main/Sections").then((module) => module.Section2),
+  { ssr: false }
+);
+const Section3 = dynamic(
+  () => import("@/components/main/Sections").then((module) => module.Section3),
+  { ssr: false }
+);
+const Section4 = dynamic(
+  () => import("@/components/main/Sections").then((module) => module.Section4),
+  { ssr: false }
+);
+
+const Paprika = dynamic(() => import("@/components/3Dmodel/Paprika.jsx"), {
+  ssr: false,
+});
 
 function Home() {
   const section1Ref = useRef(null);
@@ -42,6 +59,7 @@ function Home() {
   }, []);
 
   const opacity = 1.3 - scrollY / 350;
+  useGLTF.preload("/paprika-transformed.glb");
 
   return (
     <>
