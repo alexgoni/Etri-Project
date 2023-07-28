@@ -1,4 +1,4 @@
-import Greenhouse from "@/components/Greenhouse.jsx";
+import Greenhouse from "@/components/3Dmodel/Greenhouse.jsx";
 import { Canvas } from "@react-three/fiber";
 import { Stage, OrbitControls } from "@react-three/drei";
 import Link from "next/link";
@@ -59,7 +59,7 @@ function Section1() {
               rgba(255, 255, 255, 0.05),
               rgba(255, 255, 255, 0.03)
             ),
-            url("/mainimg1.jpg");
+            url("/mainimg1.webp");
           background-size: cover;
         }
       `}</style>
@@ -84,8 +84,10 @@ function Section2() {
                 teams have richer contextual information to rapidly respond to
                 requests, incidents, and changes.
               </p>
-              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
-                <Link href="/menu/chart">Go To</Link>
+              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
+                <Link className="py-2 px-4 block" href="/menu/chart">
+                  Go To
+                </Link>
               </button>
             </div>
             <div></div>
@@ -131,8 +133,10 @@ function Section3() {
                 teams have richer contextual information to rapidly respond to
                 requests, incidents, and changes.
               </p>
-              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
-                <Link href="/menu/three">Go To</Link>
+              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
+                <Link className="py-2 px-4 block" href="/menu/three">
+                  Go To
+                </Link>
               </button>
             </div>
           </div>
@@ -169,8 +173,10 @@ function Section4() {
                 teams have richer contextual information to rapidly respond to
                 requests, incidents, and changes.
               </p>
-              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
-                <Link href="/menu/vrar">Go To</Link>
+              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
+                <Link className="py-2 px-4 block" href="/menu/vrar">
+                  Go To
+                </Link>
               </button>
             </div>
             <div className=""></div>

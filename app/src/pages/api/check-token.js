@@ -7,7 +7,6 @@ export default function checkToken(req, res) {
   try {
     const secretKey = `${process.env.NEXT_PUBLIC_ACCESS_KEY}`;
     const decode = jwt.verify(accessToken, secretKey);
-    //console.log(decode);
     // 유효한 JWT인 경우
     res.status(200).json({ isLoggedIn: true, decode });
   } catch (error) {

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { animateScroll as scroll } from "react-scroll";
+
 import Authentication from "@/components/authentication";
 import ScrollNavBar from "@/components/ScrollNavbar";
 import dynamic from "next/dynamic";
@@ -110,7 +111,7 @@ function Home() {
           left: 0;
           right: 0;
           bottom: 0;
-          background-image: url("/mainimg2.jpg");
+          background-image: url("/mainimg2.webp");
           background-size: cover;
           opacity: ${opacity};
           transition: opacity 0.5s;
