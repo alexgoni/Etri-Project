@@ -12,7 +12,7 @@ export default function Model(props) {
   );
   return (
     <group {...props} dispose={null}>
-      <group position={[0, 0, 90]} rotation={[0, -1.33, 0]} scale={20}>
+      <group rotation={[0, -1.33, 0]} scale={10} position={[0, -3, 0]}>
         <mesh geometry={nodes["result-9"].geometry} material={materials.stem} />
         <mesh
           geometry={nodes["result-9_1"].geometry}

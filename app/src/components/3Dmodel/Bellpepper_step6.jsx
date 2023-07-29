@@ -11,9 +11,9 @@ export default function Model(props) {
   return (
     <group {...props} dispose={null}>
       <group
-        position={[0, 0, 50]}
+        position={[0, -3, 0]}
         rotation={[Math.PI, -0.81, Math.PI]}
-        scale={20}
+        scale={10}
       >
         <mesh geometry={nodes["result-5"].geometry} material={materials.stem} />
         <mesh
