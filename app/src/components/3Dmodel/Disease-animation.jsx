@@ -6,30 +6,31 @@ Command: npx gltfjsx@6.1.11 disease-animation.gltf --transform
 import React, { useRef, useEffect, useCallback } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
-export default function DiseaseAnimation({ isPlaying }) {
+export default function DiseaseAnimation({ isPlaying, animationSpeed }) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
     "/glb/disease-animation-transformed.glb"
   );
   const { actions, mixer } = useAnimations(animations, group);
 
-  // 애니메이션 재생/멈춤 함수를 useCallback을 이용하여 최적화
   const toggleAnimation = useCallback(() => {
     if (isPlaying) {
-      // 애니메이션 멈추기
-      actions["KeyAction"].paused = true;
-      // 멈춘 지점의 시간으로 설정하여 애니메이션이 멈춘 지점에서 유지되도록 함
-    } else {
-      // 애니메이션 재생
       actions["KeyAction"].paused = false;
       actions["KeyAction"].play();
+    } else {
+      actions["KeyAction"].paused = true;
     }
-  }, [isPlaying, actions, mixer]);
+  }, [isPlaying, actions]);
 
   useEffect(() => {
-    // isPlaying 상태가 변경될 때만 toggleAnimation 함수 호출
     toggleAnimation();
   }, [isPlaying, toggleAnimation]);
+
+  // 애니메이션 속도를 변경할 때마다 timeScale 값을 업데이트합니다.
+  useEffect(() => {
+    actions["KeyAction"].timeScale = animationSpeed;
+  }, [animationSpeed, actions]);
+
   return (
     <group ref={group} dispose={null}>
       <group name="Scene">
