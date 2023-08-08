@@ -90,7 +90,6 @@ function VRAR() {
           >
             <CameraControls />
             <ambientLight intensity={1.2} />
-            {/* materials를 ModelContainer 컴포넌트로 전달 */}
             <ModelContainer model={CurrentModel} materials={materials} />
           </Canvas>
         </div>

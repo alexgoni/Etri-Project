@@ -1,31 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { animateScroll as scroll } from "react-scroll";
-
 import Authentication from "@/components/authentication";
 import ScrollNavBar from "@/components/ScrollNavbar";
-import dynamic from "next/dynamic";
 import { useGLTF } from "@react-three/drei";
-
-const Section1 = dynamic(
-  () => import("@/components/main/Sections").then((module) => module.Section1),
-  { ssr: false }
-);
-const Section2 = dynamic(
-  () => import("@/components/main/Sections").then((module) => module.Section2),
-  { ssr: false }
-);
-const Section3 = dynamic(
-  () => import("@/components/main/Sections").then((module) => module.Section3),
-  { ssr: false }
-);
-const Section4 = dynamic(
-  () => import("@/components/main/Sections").then((module) => module.Section4),
-  { ssr: false }
-);
-
-const Paprika = dynamic(() => import("@/components/3Dmodel/Paprika.jsx"), {
-  ssr: false,
-});
+import {
+  Section1,
+  Section2,
+  Section3,
+  Section4,
+} from "@/components/main/Sections";
 
 function Home() {
   const section1Ref = useRef(null);
@@ -67,20 +50,18 @@ function Home() {
       <Authentication setIsLoggedIn={setIsLoggedIn} />
 
       <div className="main-container">
-        <div className="hero">
-          <div className="hero-background" />
-          <h1 className="hero-title">ETRI 재난안전</h1>
-        </div>
         <ScrollNavBar
           handleClick={handleClick}
           isLoggedIn={isLoggedIn}
           section1Ref={section1Ref}
-          section2Ref={section2Ref}
-          section3Ref={section3Ref}
-          section4Ref={section4Ref}
         />
         <section id="section1" ref={section1Ref}>
-          <Section1 />
+          <Section1
+            handleClick={handleClick}
+            section2Ref={section2Ref}
+            section3Ref={section3Ref}
+            section4Ref={section4Ref}
+          />
         </section>
         <section id="section2" ref={section2Ref}>
           <Section2 />
@@ -95,37 +76,7 @@ function Home() {
 
       <style jsx>{`
         .main-container {
-          height: 500vh;
           width: 100%;
-        }
-
-        .hero {
-          position: relative;
-          height: 100vh;
-          background-color: black;
-        }
-
-        .hero-background {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-image: url("/mainimg2.webp");
-          background-size: cover;
-          opacity: ${opacity};
-          transition: opacity 0.5s;
-        }
-
-        .hero-title {
-          position: absolute;
-          bottom: 20px;
-          right: 20px;
-          font-size: 4rem;
-          font-weight: bold;
-          color: whitesmoke;
-          padding: 3rem;
-          opacity: ${opacity};
         }
 
         section {

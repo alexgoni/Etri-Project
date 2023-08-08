@@ -1,14 +1,9 @@
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-function ScrollNavbar({
-  handleClick,
-  isLoggedIn,
-  section1Ref,
-  section2Ref,
-  section3Ref,
-  section4Ref,
-}) {
+function ScrollNavbar({ handleClick, isLoggedIn, section1Ref }) {
+  const router = useRouter();
   return (
     <>
       <nav className="flex items-center justify-between flex-wrap bg-black p-6 sticky top-0">
@@ -55,7 +50,9 @@ function ScrollNavbar({
               spy={true}
               smooth={true}
               duration={800}
-              onClick={() => handleClick(section2Ref)}
+              onClick={() => {
+                router.push("/menu/chart");
+              }}
               className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
               style={{ cursor: "pointer" }}
             >
@@ -66,7 +63,9 @@ function ScrollNavbar({
               spy={true}
               smooth={true}
               duration={800}
-              onClick={() => handleClick(section3Ref)}
+              onClick={() => {
+                router.push("/menu/three");
+              }}
               className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
               style={{ cursor: "pointer" }}
             >
@@ -77,7 +76,9 @@ function ScrollNavbar({
               spy={true}
               smooth={true}
               duration={800}
-              onClick={() => handleClick(section4Ref)}
+              onClick={() => {
+                alert("sorry, we are not ready");
+              }}
               className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
               style={{ cursor: "pointer" }}
             >

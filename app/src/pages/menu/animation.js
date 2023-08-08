@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Navbar from "@/components/Navbar";
 import { Canvas } from "@react-three/fiber";
 import { Stage, OrbitControls } from "@react-three/drei";
@@ -7,6 +7,7 @@ import DiseaseAnimation from "@/components/3Dmodel/Disease-animation";
 function Animation() {
   const [isAnimationPlaying, setIsAnimationPlaying] = useState(true);
   const [animationSpeed, setAnimationSpeed] = useState(1);
+  const [currentTime, setCurrentTime] = useState(0); // 현재 시간을 상태로 저장합니다.
 
   const toggleAnimation = () => {
     setIsAnimationPlaying((prevIsPlaying) => !prevIsPlaying);
@@ -20,6 +21,10 @@ function Animation() {
     setAnimationSpeed((prevSpeed) => prevSpeed - 0.1); // 애니메이션 속도를 0.1씩 감소시킵니다.
   };
 
+  const updateCurrentTime = useCallback((time) => {
+    setCurrentTime(time);
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -30,6 +35,7 @@ function Animation() {
               <DiseaseAnimation
                 isPlaying={isAnimationPlaying}
                 animationSpeed={animationSpeed}
+                updateCurrentTime={updateCurrentTime}
               />
             </group>
           </Stage>
@@ -58,6 +64,10 @@ function Animation() {
         </button>
         <span className="ml-4 text-gray-600">
           현재 속도: {animationSpeed.toFixed(1)}
+        </span>
+
+        <span className="ml-4 text-gray-600">
+          현재 시간: {currentTime.toFixed(1)} 초
         </span>
       </div>
     </>

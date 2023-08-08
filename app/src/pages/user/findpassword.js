@@ -38,7 +38,7 @@ const FindPasswordDiv = styled.div`
       width: 300px;
       height: 25px;
       border-radius: 2px;
-      text-indent: 1.8rem;
+      text-indent: 0.5rem;
       color: black;
 
       &:active,
@@ -117,8 +117,10 @@ function FindPassword() {
             />
             <button type="submit">비밀번호 찾기</button>
           </form>
-          {password ? <p>비밀번호: {password}</p> : null}
-          {message && !password && <p>{message}</p>}
+          {password ? (
+            <p className="text-gray-900">비밀번호: {password}</p>
+          ) : null}
+          {message && !password && <p className="text-gray-900">{message}</p>}
         </FindPasswordDiv>
       </MainContainer>
     </>
