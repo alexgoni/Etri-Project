@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <>
       <Authentication setIsLoggedIn={setIsLoggedIn} />
-      <nav className="flex items-center justify-between flex-wrap bg-black p-6 sticky top-0 z-10">
+      {/* <nav className="flex items-center justify-between flex-wrap bg-black p-6 sticky top-0 z-10">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <span className="font-semibold text-xl tracking-tight">
             <Link href="/">KETI Project</Link>
@@ -71,7 +71,53 @@ function Navbar() {
         Link {
           cursor: pointer;
         }
-      `}</style>
+      `}</style> */}
+
+      <nav className="bg-black sticky top-0 z-10 text-white p-3 shadow-xl">
+        <div className="font-semibold text-3xl font-barlow text-center mt-2 tracking-wide">
+          <Link href="/">KETI Project</Link>
+        </div>
+
+        <div className="text-sm flex items-center justify-between px-8">
+          <div className="flex space-x-10  text-teal-200">
+            <div>
+              <Link className="hover:text-gray-300" href="/menu/chart">
+                Dashboard
+              </Link>
+            </div>
+            <div>
+              <Link className="hover:text-gray-300" href="/menu/three">
+                3D Visualization
+              </Link>
+            </div>
+            <div>
+              <Link className="hover:text-gray-300" href="/menu/vrar">
+                VR & AR
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-8">
+            {isLoggedIn && (
+              <div className="text-red-200">
+                <Link className="hover:text-gray-300" href="/menu/chart">
+                  Admin
+                </Link>
+              </div>
+            )}
+
+            <div>
+              <Link
+                href="/user/login"
+                className="border px-5 py-2 inline-block border-white rounded-lg text-white hover:border-transparent hover:text-teal-500 hover:bg-white"
+              >
+                Login
+              </Link>
+              {/* login된 상태 시 log out 구현 */}
+            </div>
+          </div>
+        </div>
+      </nav>
     </>
   );
 }

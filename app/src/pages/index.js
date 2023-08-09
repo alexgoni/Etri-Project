@@ -9,6 +9,7 @@ import {
   Section3,
   Section4,
 } from "@/components/main/Sections";
+import Navbar from "@/components/Navbar";
 
 function Home() {
   const section1Ref = useRef(null);
@@ -42,19 +43,12 @@ function Home() {
     };
   }, []);
 
-  const opacity = 1.3 - scrollY / 350;
-  useGLTF.preload("/paprika-transformed.glb");
-
   return (
     <>
       <Authentication setIsLoggedIn={setIsLoggedIn} />
 
       <div className="main-container">
-        <ScrollNavBar
-          handleClick={handleClick}
-          isLoggedIn={isLoggedIn}
-          section1Ref={section1Ref}
-        />
+        <Navbar />
         <section id="section1" ref={section1Ref}>
           <Section1
             handleClick={handleClick}
