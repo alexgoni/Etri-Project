@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken";
 
 export default function login(req, res) {
   if (req.method === "POST") {
-    const { email, password, building } = req.body;
+    const { email, password } = req.body;
 
     User.findOne({
-      where: { username: email, password, building },
+      where: { username: email, password },
     })
       .then((user) => {
         if (!user) {
