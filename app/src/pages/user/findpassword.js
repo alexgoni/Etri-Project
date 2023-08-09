@@ -1,70 +1,6 @@
-import styled from "@emotion/styled";
 import { useState } from "react";
 import axios from "axios";
-
-const MainContainer = styled.div`
-  background-image: url("/black.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const FindPasswordDiv = styled.div`
-  background-color: rgba(255, 255, 255, 0.3);
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  color: white;
-
-  h2 {
-    color: white;
-    margin-bottom: 10px;
-  }
-
-  p {
-    margin-bottom: 20px;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    input {
-      margin-bottom: 10px;
-      width: 300px;
-      height: 25px;
-      border-radius: 2px;
-      text-indent: 0.5rem;
-      color: black;
-
-      &:active,
-      &:focus {
-        outline: none;
-      }
-    }
-
-    button {
-      display: block;
-      width: 300px;
-      padding: 7px;
-      background-color: black;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 14px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-  }
-
-  p {
-    margin-top: 10px;
-  }
-`;
+import { useRouter } from "next/router";
 
 function FindPassword() {
   const [email, setEmail] = useState("");
@@ -99,31 +35,56 @@ function FindPassword() {
   };
 
   return (
-    <>
-      <MainContainer>
-        <FindPasswordDiv>
-          <h2>비밀번호 찾기</h2>
-          <p>
-            이메일을 입력하면 해당 이메일로 등록된 계정의 비밀번호를 확인할 수
-            있습니다.
-          </p>
-          <form onSubmit={handlePasswordRecovery}>
-            <input
-              type="email"
-              value={email}
-              placeholder="이메일"
-              onChange={handleEmailChange}
-              required
-            />
-            <button type="submit">비밀번호 찾기</button>
-          </form>
-          {password ? (
-            <p className="text-gray-900">비밀번호: {password}</p>
-          ) : null}
-          {message && !password && <p className="text-gray-900">{message}</p>}
-        </FindPasswordDiv>
-      </MainContainer>
-    </>
+    <div className="bg-gray-200 flex justify-center items-center h-screen">
+      <div className="flex bg-white shadow-xl">
+        <form onSubmit={handlePasswordRecovery} className="p-7">
+          <div className="flex items-center mb-20">
+            <img src="/logo.jpg" alt="logo" className="w-9 h-9" />
+            <span className="text-gray-700 font-semibold font-borel text-lg pt-3">
+              KETI
+            </span>
+          </div>
+
+          <div className="px-16">
+            <div className="my-7">
+              <h1 className="text-5xl font-black font-borel  text-center">
+                Forgot Password?
+              </h1>
+              <p className="text-gray-500 text-center">
+                이메일을 입력하면 해당 이메일로 등록된 계정의 비밀번호를 확인할 수
+                있습니다.
+              </p>
+            </div>
+
+            <div>
+              <span className="font-ubuntu">Email</span>
+              <input
+                type="email"
+                value={email}
+                placeholder="이메일"
+                onChange={handleEmailChange}
+                required
+                className="w-full rounded-sm border-2 border-b-4 border-black focus:outline-none h-9 indent-2"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="bg-black w-full text-white mt-8 text-center rounded-md p-2 cursor-pointer hover:bg-teal-500"
+            >
+              Find Password
+            </button>
+
+            {password ? (
+              <p className="text-gray-900">password: {password}</p>
+            ) : null}
+            {message && !password && (
+              <p className="text-gray-900">{message}</p>
+            )}
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
 
