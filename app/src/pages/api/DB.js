@@ -21,11 +21,6 @@ const User = sequelize.define(
       allowNull: false,
       field: "password", // 테이블의 password 컬럼과 매핑
     },
-    building: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      field: "building", // 테이블의 building 컬럼과 매핑
-    },
   },
   {
     tableName: "users", // 테이블명
