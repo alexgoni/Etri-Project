@@ -2,9 +2,9 @@ import { sequelize, User } from "./DB";
 
 export default function register(req, res) {
   if (req.method === "POST") {
-    const { email, password, building } = req.body;
+    const { email, password } = req.body;
 
-    User.create({ username: email, password, building })
+    User.create({ username: email, password })
       .then(() => {
         res.status(200).json({ message: "Registration successful!" });
       })
