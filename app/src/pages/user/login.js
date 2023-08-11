@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
-
+import Image from "next/image";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -103,7 +103,7 @@ function Login() {
             </div>
           </form>
 
-          <img
+          <Image
             src="/login-image.jpg"
             alt="login"
             className="w-96 h-96 md:h-auto object-cover md:col-span-2 hidden lg:block"

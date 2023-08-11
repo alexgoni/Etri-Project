@@ -161,7 +161,7 @@ function Section4() {
                 Virtual Reality (VR) and Augmented Reality (AR) are innovative
                 technologies that immerse users in digital worlds or overlay
                 virtual elements onto the real world. Through these cutting-edge
-                technologies, we can bring virtual farms right before the users'
+                technologies, we can bring virtual farms right before the users
                 eyes, creating an immersive and interactive agricultural
                 experience.
               </p>

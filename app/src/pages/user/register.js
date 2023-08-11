@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-
+import Image from "next/image";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -50,7 +50,7 @@ function Register() {
 
           <form onSubmit={handleSubmit} className="p-7">
             <div className="flex items-center mb-20">
-              <img src="/logo.jpg" alt="logo" className="w-9 h-9" />
+              <Image src="/logo.jpg" alt="logo" className="w-9 h-9" />
               <span className="text-gray-700 font-semibold font-borel text-lg pt-3">
                 KETI
               </span>

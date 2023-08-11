@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Stage, OrbitControls, useGLTF } from "@react-three/drei";
@@ -33,10 +33,25 @@ const ModelContainer = ({ model, stemColor, leafColor }) => {
 function VRAR() {
   const modelNum = 10;
   const [currentPepperIndex, setCurrentPepperIndex] = useState(0);
-  const [stemColor, setStemColor] = useState("#00ff00"); // 초기값은 녹색
-  const [leafColor, setLeafColor] = useState("#00ff00"); // 초기값은 녹색
+  const [stemColor, setStemColor] = useState("#00ff00");
+  const [leafColor, setLeafColor] = useState("#00ff00");
+  const [materials, setMaterials] = useState(null);
 
-  const { materials } = useGLTF("/glb/bellpepper_step10-transformed.glb");
+  useEffect(() => {
+    // Load GLTF model materials asynchronously
+    const loadMaterials = async () => {
+      try {
+        const loadedMaterials = await useGLTF(
+          "/glb/bellpepper_step10-transformed.glb"
+        );
+        setMaterials(loadedMaterials);
+      } catch (error) {
+        console.error("Error loading GLTF materials:", error);
+      }
+    };
+
+    loadMaterials();
+  }, []);
 
   const handleSliderChange = (event) => {
     const newIndex = parseInt(event.target.value, 10);
@@ -46,27 +61,25 @@ function VRAR() {
   const handleStemColorChange = (event) => {
     const newColor = event.target.value;
     setStemColor(newColor);
-    materials.stem.color.set(newColor);
   };
 
   const handleLeafColorChange = (event) => {
     const newColor = event.target.value;
     setLeafColor(newColor);
-    materials.leaf_disease.color.set(newColor);
   };
 
   // 각 모델을 배열로 생성하여 재사용
   const pepperModels = [
-    <Bellpepper_step1 stemColor={stemColor} leafColor={leafColor} />,
-    <Bellpepper_step2 stemColor={stemColor} leafColor={leafColor} />,
-    <Bellpepper_step3 stemColor={stemColor} leafColor={leafColor} />,
-    <Bellpepper_step4 stemColor={stemColor} leafColor={leafColor} />,
-    <Bellpepper_step5 stemColor={stemColor} leafColor={leafColor} />,
-    <Bellpepper_step6 stemColor={stemColor} leafColor={leafColor} />,
-    <Bellpepper_step7 stemColor={stemColor} leafColor={leafColor} />,
-    <Bellpepper_step8 stemColor={stemColor} leafColor={leafColor} />,
-    <Bellpepper_step9 stemColor={stemColor} leafColor={leafColor} />,
-    <Bellpepper_step10 stemColor={stemColor} leafColor={leafColor} />,
+    <Bellpepper_step1 key={1} stemColor={stemColor} leafColor={leafColor} />,
+    <Bellpepper_step2 key={2} stemColor={stemColor} leafColor={leafColor} />,
+    <Bellpepper_step3 key={3} stemColor={stemColor} leafColor={leafColor} />,
+    <Bellpepper_step4 key={4} stemColor={stemColor} leafColor={leafColor} />,
+    <Bellpepper_step5 key={5} stemColor={stemColor} leafColor={leafColor} />,
+    <Bellpepper_step6 key={6} stemColor={stemColor} leafColor={leafColor} />,
+    <Bellpepper_step7 key={7} stemColor={stemColor} leafColor={leafColor} />,
+    <Bellpepper_step8 key={8} stemColor={stemColor} leafColor={leafColor} />,
+    <Bellpepper_step9 key={9} stemColor={stemColor} leafColor={leafColor} />,
+    <Bellpepper_step10 key={10} stemColor={stemColor} leafColor={leafColor} />,
   ];
 
   const CurrentModel = pepperModels[currentPepperIndex];
