@@ -50,7 +50,13 @@ function Register() {
 
           <form onSubmit={handleSubmit} className="p-7">
             <div className="flex items-center mb-20">
-              <Image src="/logo.jpg" alt="logo" className="w-9 h-9" />
+              <Image
+                src="/logo.jpg"
+                width={100}
+                height={100}
+                alt="logo"
+                className="w-9 h-9"
+              />
               <span className="text-gray-700 font-semibold font-borel text-lg pt-3">
                 KETI
               </span>

@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
 
 export default function DiseaseAnimation({
   isPlaying,
@@ -11,7 +10,7 @@ export default function DiseaseAnimation({
   const { nodes, materials, animations } = useGLTF(
     "/glb/disease-animation-transformed.glb"
   );
-  const { actions, mixer } = useAnimations(animations, group);
+  const { actions } = useAnimations(animations, group);
   const [currentTime, setCurrentTime] = useState(0);
 
   const toggleAnimation = useCallback(() => {
@@ -31,19 +30,17 @@ export default function DiseaseAnimation({
     actions["KeyAction"].timeScale = animationSpeed;
   }, [animationSpeed, actions]);
 
-  useFrame((state) => {
-    if (isPlaying && mixer) {
-      mixer.update(state.clock.getDelta());
-      const elapsedTime = state.clock.elapsedTime;
-      const totalTime = animations.reduce(
-        (total, clip) => total + clip.duration,
-        0
-      );
-      const currentTimeNormalized = elapsedTime % totalTime;
-      setCurrentTime(currentTimeNormalized);
-      updateCurrentTime(currentTimeNormalized);
-    }
-  });
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const currentAnimationTime = actions["KeyAction"].time;
+      updateCurrentTime(currentAnimationTime);
+    }, 100);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [actions, updateCurrentTime]);
+
   return (
     <group ref={group} dispose={null}>
       <group name="Scene">

@@ -78,7 +78,7 @@ function Navbar() {
           <Link href="/">KETI Project</Link>
         </div>
 
-        <div className="text-sm flex items-center justify-between px-8">
+        <div className="text-sm flex flex-wrap items-center justify-between px-8">
           <div className="flex space-x-10  text-teal-200">
             <div>
               <Link className="hover:text-gray-300" href="/menu/chart">
@@ -100,7 +100,7 @@ function Navbar() {
           <div className="flex items-center space-x-8">
             {isLoggedIn && (
               <div className="text-red-200">
-                <Link className="hover:text-gray-300" href="/menu/chart">
+                <Link className="hover:text-gray-300" href="/menu/admin">
                   Admin
                 </Link>
               </div>
@@ -109,7 +109,7 @@ function Navbar() {
             <div>
               <Link
                 href="/user/login"
-                className="border px-5 py-2 inline-block border-white rounded-lg text-white hover:border-transparent hover:text-teal-500 hover:bg-white"
+                className="border px-5 py-2 border-white rounded-lg text-white hover:border-transparent hover:text-teal-500 hover:bg-white hidden sm:inline-block"
               >
                 Login
               </Link>

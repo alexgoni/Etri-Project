@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import Navbar from "@/components/Navbar";
 import { Canvas } from "@react-three/fiber";
-import { Stage, OrbitControls } from "@react-three/drei";
+import { Stage, OrbitControls, Center } from "@react-three/drei";
 import DiseaseAnimation from "@/components/3Dmodel/Disease-animation";
 
 function Animation() {
@@ -28,18 +28,16 @@ function Animation() {
   return (
     <>
       <Navbar />
-      <div>
-        <Canvas style={{ height: "100vh" }}>
-          <Stage environment="city" intensity={0.6}>
-            <group>
-              <DiseaseAnimation
-                isPlaying={isAnimationPlaying}
-                animationSpeed={animationSpeed}
-                updateCurrentTime={updateCurrentTime}
-              />
-            </group>
+      <div className="h-screen">
+        <Canvas>
+          <Stage adjustCamera={false} environment="city" intensity={0.6}>
+            <DiseaseAnimation
+              isPlaying={isAnimationPlaying}
+              animationSpeed={animationSpeed}
+              updateCurrentTime={updateCurrentTime}
+            />
           </Stage>
-          <OrbitControls enableZoom={false} />
+          <OrbitControls enableZoom={true} />
         </Canvas>
       </div>
 

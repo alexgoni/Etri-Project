@@ -5,7 +5,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>ETRI Project</title>
+        <title>KETI Project</title>
       </Head>
       <Component {...pageProps} />
     </>

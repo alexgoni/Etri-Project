@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import { Canvas, useThree } from "@react-three/fiber";
-import { Stage, OrbitControls, useGLTF } from "@react-three/drei";
+import { Stage, OrbitControls } from "@react-three/drei";
 import Bellpepper_step1 from "@/components/3Dmodel/Bellpepper_step1";
 import Bellpepper_step2 from "@/components/3Dmodel/Bellpepper_step2";
 import Bellpepper_step3 from "@/components/3Dmodel/Bellpepper_step3";
@@ -35,23 +35,23 @@ function VRAR() {
   const [currentPepperIndex, setCurrentPepperIndex] = useState(0);
   const [stemColor, setStemColor] = useState("#00ff00");
   const [leafColor, setLeafColor] = useState("#00ff00");
-  const [materials, setMaterials] = useState(null);
+  // const [materials, setMaterials] = useState(null);
 
-  useEffect(() => {
-    // Load GLTF model materials asynchronously
-    const loadMaterials = async () => {
-      try {
-        const loadedMaterials = await useGLTF(
-          "/glb/bellpepper_step10-transformed.glb"
-        );
-        setMaterials(loadedMaterials);
-      } catch (error) {
-        console.error("Error loading GLTF materials:", error);
-      }
-    };
+  // useEffect(() => {
+  //   // Load GLTF model materials asynchronously
+  //   const loadMaterials = async () => {
+  //     try {
+  //       const loadedMaterials = await useGLTF(
+  //         "/glb/bellpepper_step10-transformed.glb"
+  //       );
+  //       setMaterials(loadedMaterials);
+  //     } catch (error) {
+  //       console.error("Error loading GLTF materials:", error);
+  //     }
+  //   };
 
-    loadMaterials();
-  }, []);
+  //   loadMaterials();
+  // }, []);
 
   const handleSliderChange = (event) => {
     const newIndex = parseInt(event.target.value, 10);
@@ -101,9 +101,10 @@ function VRAR() {
           <Canvas
             style={{ width: "100%", height: "500px", borderRadius: "8px" }}
           >
-            <CameraControls />
-            <ambientLight intensity={1.2} />
-            <ModelContainer model={CurrentModel} materials={materials} />
+            <Stage adjustCamera={false}>
+              <CameraControls />
+              <ModelContainer model={CurrentModel} />
+            </Stage>
           </Canvas>
         </div>
         <div style={{ marginLeft: "20px" }}>

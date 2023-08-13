@@ -106,6 +106,8 @@ function Login() {
           <Image
             src="/login-image.jpg"
             alt="login"
+            width={100}
+            height={100}
             className="w-96 h-96 md:h-auto object-cover md:col-span-2 hidden lg:block"
           />
         </div>
