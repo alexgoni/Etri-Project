@@ -1,4 +1,4 @@
-import Level30_white from "@/components/3Dmodel/gltf_exports/Level30-whitefruit";
+import Level30_white from "@/components/3Dmodel/gltf_exports/level30-notexture";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Stage, OrbitControls } from "@react-three/drei";
 import Navbar from "@/components/Navbar";
