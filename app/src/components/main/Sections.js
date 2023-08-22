@@ -130,6 +130,19 @@ function Section3() {
                   Go To
                 </Link>
               </button>
+
+              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
+                <Link className="py-2 px-4 block" href="/menu/control">
+                  Color Control
+                </Link>
+              </button>
+
+              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
+                <Link className="py-2 px-4 block" href="/menu/bgtest">
+                  Background Test
+                </Link>
+              </button>
+              
             </div>
           </div>
         </section>
