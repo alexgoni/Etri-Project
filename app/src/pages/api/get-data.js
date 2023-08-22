@@ -12,7 +12,7 @@ function check(data) {
   if (data["조도"] > 90) message.push("조도가 너무 높습니다.");
   else if (data["조도"] < 60) message.push("조도가 너무 낮습니다.");
 
-  if (data["이산화탄소"] > 1000) message.push("이산화탄소가 너무 많습니다.");
+  if (data["co2"] > 1000) message.push("이산화탄소가 너무 많습니다.");
 
   if (data["배액ec"] > 7) message.push("배액ec가 너무 높습니다.");
   else if (data["배액ec"] < 5) message.push("배액ec가 너무 낮습니다.");

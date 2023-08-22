@@ -15,7 +15,7 @@ export default function Model(props) {
 
   useEffect(() => {
     if (props.play) {
-      actions["Key.005Action"].play();
+      actions["Key.002Action"].play();
     }
   }, [props.play]);
 
@@ -24,65 +24,69 @@ export default function Model(props) {
       <group name="Scene">
         <group name="result_006">
           <mesh
-            name="result-5_017"
-            geometry={nodes["result-5_017"].geometry}
-            material={materials["leaf_disease.001"]}
-            morphTargetDictionary={nodes["result-5_017"].morphTargetDictionary}
-            morphTargetInfluences={nodes["result-5_017"].morphTargetInfluences}
-          />
-          <mesh
-            name="result-5_017_1"
-            geometry={nodes["result-5_017_1"].geometry}
+            name="result-5_017001"
+            geometry={nodes["result-5_017001"].geometry}
             material={materials["leaf_disease.001"]}
             morphTargetDictionary={
-              nodes["result-5_017_1"].morphTargetDictionary
+              nodes["result-5_017001"].morphTargetDictionary
             }
             morphTargetInfluences={
-              nodes["result-5_017_1"].morphTargetInfluences
+              nodes["result-5_017001"].morphTargetInfluences
             }
           />
           <mesh
-            name="result-5_017_2"
-            geometry={nodes["result-5_017_2"].geometry}
+            name="result-5_017001_1"
+            geometry={nodes["result-5_017001_1"].geometry}
             material={materials["leaf_disease.001"]}
             morphTargetDictionary={
-              nodes["result-5_017_2"].morphTargetDictionary
+              nodes["result-5_017001_1"].morphTargetDictionary
             }
             morphTargetInfluences={
-              nodes["result-5_017_2"].morphTargetInfluences
+              nodes["result-5_017001_1"].morphTargetInfluences
             }
           />
           <mesh
-            name="result-5_017_3"
-            geometry={nodes["result-5_017_3"].geometry}
+            name="result-5_017001_2"
+            geometry={nodes["result-5_017001_2"].geometry}
             material={materials["leaf_disease.001"]}
             morphTargetDictionary={
-              nodes["result-5_017_3"].morphTargetDictionary
+              nodes["result-5_017001_2"].morphTargetDictionary
             }
             morphTargetInfluences={
-              nodes["result-5_017_3"].morphTargetInfluences
+              nodes["result-5_017001_2"].morphTargetInfluences
             }
           />
           <mesh
-            name="result-5_017_4"
-            geometry={nodes["result-5_017_4"].geometry}
+            name="result-5_017001_3"
+            geometry={nodes["result-5_017001_3"].geometry}
+            material={materials["leaf_disease.001"]}
+            morphTargetDictionary={
+              nodes["result-5_017001_3"].morphTargetDictionary
+            }
+            morphTargetInfluences={
+              nodes["result-5_017001_3"].morphTargetInfluences
+            }
+          />
+          <mesh
+            name="result-5_017001_4"
+            geometry={nodes["result-5_017001_4"].geometry}
             material={materials["petals.001"]}
             morphTargetDictionary={
-              nodes["result-5_017_4"].morphTargetDictionary
+              nodes["result-5_017001_4"].morphTargetDictionary
             }
             morphTargetInfluences={
-              nodes["result-5_017_4"].morphTargetInfluences
+              nodes["result-5_017001_4"].morphTargetInfluences
             }
           />
           <mesh
-            name="result-5_017_5"
-            geometry={nodes["result-5_017_5"].geometry}
+            name="result-5_017001_5"
+            geometry={nodes["result-5_017001_5"].geometry}
             material={materials["stem.001"]}
             morphTargetDictionary={
-              nodes["result-5_017_5"].morphTargetDictionary
+              nodes["result-5_017001_5"].morphTargetDictionary
             }
             morphTargetInfluences={
-              nodes["result-5_017_5"].morphTargetInfluences
+              nodes["result-5_017001_5"].morphTargetInfluences
             }
           />
         </group>

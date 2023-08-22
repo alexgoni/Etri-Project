@@ -26,3 +26,16 @@ body {
 .font-barlow {
   font-family: "Barlow Semi Condensed", sans-serif;
 }
+
+.model-container {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.model-container.show {
+  opacity: 1;
+}
+
+.model-container.hide {
+  opacity: 0;
+}

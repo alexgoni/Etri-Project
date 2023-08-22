@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, Stage } from "@react-three/drei";
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 
 import Level1 from "@/components/3Dmodel/gltf_exports/Level1.jsx";
 import Level2 from "@/components/3Dmodel/gltf_exports/Level2.jsx";
@@ -44,13 +44,15 @@ const ModelContainer = ({ model: ModelComponent, play, ...props }) => {
 
 function CameraControls() {
   const { camera } = useThree();
-  camera.position.set(0, 6, 15);
+  camera.position.set(0, 3, 15);
 }
 
 const Three = () => {
   const [currentModelIndex, setCurrentModelIndex] = useState(0);
   const [chats, setChats] = useState([]);
   const [warning, setWarning] = useState(false);
+  const [growthInterval, setGrowthInterval] = useState(10);
+
   const levels = [
     Level1,
     Level2,
@@ -85,20 +87,27 @@ const Three = () => {
   ];
 
   const modelNum = levels.length;
+  const CurrentModel = levels[currentModelIndex];
+
+  const handleIntervalChange = (event) => {
+    const newInterval = parseInt(event.target.value);
+    setGrowthInterval(newInterval);
+  };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (!warning) {
         setCurrentModelIndex((prevIndex) => (prevIndex + 1) % modelNum);
       }
-    }, 1000);
+    }, growthInterval * 1000);
 
     return () => {
       clearInterval(intervalId);
     };
-  }, [modelNum, warning]);
+  }, [modelNum, warning, growthInterval]);
 
   useEffect(() => {
+    console.log(currentModelIndex);
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -113,19 +122,14 @@ const Three = () => {
             warning: data.messages.length >= 3,
           };
           setChats((prevChats) => [...prevChats, newChat]);
-
-          // 추가: 경고 상태 갱신
           setWarning(newChat.warning);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchData();
   }, [currentModelIndex]);
-
-  const CurrentModel = levels[currentModelIndex];
 
   return (
     <>
@@ -147,18 +151,35 @@ const Three = () => {
             <OrbitControls />
           </Canvas>
         </div>
-        <div className="rounded-md border-2 border-gray-700 p-2 w-1/4">
-          <h1 className="text-center font-bold border-b-2 border-b-gray-500 pb-1">
-            Alert
-          </h1>
-          <div className="mt-2 overflow-y-scroll h-[40vh] space-y-2">
-            {chats.length === 0 ? (
-              <div className="text-center text-gray-500 text-sm">
-                There is no alert.
-              </div>
-            ) : (
-              <ChatBubble chats={chats} />
-            )}
+        <div className="flex flex-col w-1/4 space-y-10">
+          <div className="rounded-md border-2 border-gray-700 p-2 space-x-2 flex justify-center items-center">
+            <label htmlFor="growthInterval" className="font-bold">
+              생장 간격
+            </label>
+            <input
+              type="number"
+              id="growthInterval"
+              value={growthInterval}
+              onChange={handleIntervalChange}
+              className="w-1/2 text-right"
+              min="1"
+            />
+            <span className="mt-0.5 text-gray-">초</span>
+          </div>
+
+          <div className="rounded-md border-2 border-gray-700 p-2">
+            <h1 className="text-center font-bold border-b-2 border-b-gray-500 pb-1">
+              Alert
+            </h1>
+            <div className="mt-2 overflow-y-scroll h-[40vh] space-y-2">
+              {chats.length === 0 ? (
+                <div className="text-center text-gray-500 text-sm">
+                  There is no alert.
+                </div>
+              ) : (
+                <ChatBubble chats={chats} />
+              )}
+            </div>
           </div>
         </div>
       </div>
