@@ -3,39 +3,38 @@ import Navbar from "@/components/Navbar";
 import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
-import Level1 from "@/components/3Dmodel/gltf_exports/Level1.jsx";
-import Level2 from "@/components/3Dmodel/gltf_exports/Level2.jsx";
-import Level3 from "@/components/3Dmodel/gltf_exports/Level3.jsx";
-import Level4 from "@/components/3Dmodel/gltf_exports/Level4.jsx";
-import Level5 from "@/components/3Dmodel/gltf_exports/Level5.jsx";
-import Level6 from "@/components/3Dmodel/gltf_exports/Level6.jsx";
-import Level7 from "@/components/3Dmodel/gltf_exports/Level7.jsx";
-import Level8 from "@/components/3Dmodel/gltf_exports/Level8.jsx";
-import Level9 from "@/components/3Dmodel/gltf_exports/Level9.jsx";
-import Level10 from "@/components/3Dmodel/gltf_exports/Level10.jsx";
-import Level11 from "@/components/3Dmodel/gltf_exports/Level11.jsx";
-import Level12 from "@/components/3Dmodel/gltf_exports/Level12.jsx";
-import Level13 from "@/components/3Dmodel/gltf_exports/Level13.jsx";
-import Level14 from "@/components/3Dmodel/gltf_exports/Level14.jsx";
-import Level15 from "@/components/3Dmodel/gltf_exports/Level15.jsx";
-import Level16 from "@/components/3Dmodel/gltf_exports/Level16.jsx";
-import Level17 from "@/components/3Dmodel/gltf_exports/Level17.jsx";
-import Level18 from "@/components/3Dmodel/gltf_exports/Level18.jsx";
-import Level19 from "@/components/3Dmodel/gltf_exports/Level19.jsx";
-import Level20 from "@/components/3Dmodel/gltf_exports/Level20.jsx";
-import Level21 from "@/components/3Dmodel/gltf_exports/Level21.jsx";
-import Level22 from "@/components/3Dmodel/gltf_exports/Level22-colored";
-import Level23 from "@/components/3Dmodel/gltf_exports/Level23-colored";
-import Level24 from "@/components/3Dmodel/gltf_exports/Level24-colored";
-import Level25 from "@/components/3Dmodel/gltf_exports/Level25-colored";
-import Level26 from "@/components/3Dmodel/gltf_exports/Level26-colored";
-import Level27 from "@/components/3Dmodel/gltf_exports/Level27-colored";
-import Level28 from "@/components/3Dmodel/gltf_exports/Level28-colored";
-import Level29 from "@/components/3Dmodel/gltf_exports/Level29-colored";
-import Level30 from "@/components/3Dmodel/gltf_exports/Level30-colored";
+import Level1 from "@/components/3Dmodel/plant/Level1";
+import Level2 from "@/components/3Dmodel/plant/Level2";
+import Level3 from "@/components/3Dmodel/plant/Level3";
+import Level4 from "@/components/3Dmodel/plant/Level4";
+import Level5 from "@/components/3Dmodel/plant/Level5";
+import Level6 from "@/components/3Dmodel/plant/Level6";
+import Level7 from "@/components/3Dmodel/plant/Level7";
+import Level8 from "@/components/3Dmodel/plant/Level8";
+import Level9 from "@/components/3Dmodel/plant/Level9";
+import Level10 from "@/components/3Dmodel/plant/Level10";
+import Level11 from "@/components/3Dmodel/plant/Level11";
+import Level12 from "@/components/3Dmodel/plant/Level12";
+import Level13 from "@/components/3Dmodel/plant/Level13";
+import Level14 from "@/components/3Dmodel/plant/Level14";
+import Level15 from "@/components/3Dmodel/plant/Level15";
+import Level16 from "@/components/3Dmodel/plant/Level16";
+import Level17 from "@/components/3Dmodel/plant/Level17";
+import Level18 from "@/components/3Dmodel/plant/Level18";
+import Level19 from "@/components/3Dmodel/plant/Level19";
+import Level20 from "@/components/3Dmodel/plant/Level20";
+import Level21 from "@/components/3Dmodel/plant/Level21";
+import Level22 from "@/components/3Dmodel/plant/Level22";
+import Level23 from "@/components/3Dmodel/plant/Level23";
+import Level24 from "@/components/3Dmodel/plant/Level24";
+import Level25 from "@/components/3Dmodel/plant/Level25";
+import Level26 from "@/components/3Dmodel/plant/Level26";
+import Level27 from "@/components/3Dmodel/plant/Level27";
+import Level28 from "@/components/3Dmodel/plant/Level28";
+import Level29 from "@/components/3Dmodel/plant/Level29";
+import Level30 from "@/components/3Dmodel/plant/Level30";
 
-import BG5 from "@/components/3Dmodel/BG5.jsx";
-import NewBG from "@/components/3Dmodel/Scale2-oneside.jsx";
+import Background from "@/components/3Dmodel/Background";
 
 const ModelContainer = ({ model: ModelComponent, play, ...props }) => {
   return (
@@ -143,7 +142,7 @@ const Three = () => {
             <ambientLight intensity={0.5} />
             <directionalLight intensity={2.2} position={[10, 10, 5]} />
             <CameraControls />
-            <NewBG position={[0, -6, -3]} />
+            <Background position={[0, -6, -3]} />
             <ModelContainer
               model={CurrentModel}
               position={[0, -5.5, 0]}

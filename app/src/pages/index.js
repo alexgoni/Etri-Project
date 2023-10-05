@@ -3,12 +3,7 @@ import { animateScroll as scroll } from "react-scroll";
 import Authentication from "@/components/authentication";
 import ScrollNavBar from "@/components/ScrollNavbar";
 import { useGLTF } from "@react-three/drei";
-import {
-  Section1,
-  Section2,
-  Section3,
-  Section4,
-} from "@/components/main/Sections";
+import { Section1, Section2, Section3, Section4 } from "@/components/Sections";
 import Navbar from "@/components/Navbar";
 
 function Home() {
