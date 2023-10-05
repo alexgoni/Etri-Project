@@ -42,9 +42,11 @@ function Register() {
     <>
       <div className="bg-gray-200 flex justify-center items-center h-screen">
         <div className="flex bg-white shadow-xl">
-          <img
+          <Image
             src="/register-image.jpg"
             alt="register"
+            width={1000}
+            height={1000}
             className="w-96 h-96 md:h-auto object-cover md:col-span-2 hidden lg:block"
           />
 

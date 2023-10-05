@@ -125,24 +125,19 @@ function Section3() {
                 analysis more engaging, allowing us to uncover hidden patterns
                 and relationships.
               </p>
-              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
-                <Link className="py-2 px-4 block" href="/menu/three">
-                  Go To
-                </Link>
-              </button>
+              <div className=" flex flex-row-reverse gap-8">
+                <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
+                  <Link className="py-2 px-4 block" href="/menu/three">
+                    Go To
+                  </Link>
+                </button>
 
-              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
-                <Link className="py-2 px-4 block" href="/menu/control">
-                  Color Control
-                </Link>
-              </button>
-
-              <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
-                <Link className="py-2 px-4 block" href="/menu/bgtest">
-                  Background Test
-                </Link>
-              </button>
-              
+                <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
+                  <Link className="py-2 px-4 block" href="/menu/control">
+                    Color Control
+                  </Link>
+                </button>
+              </div>
             </div>
           </div>
         </section>

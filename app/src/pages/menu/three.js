@@ -34,6 +34,9 @@ import Level28 from "@/components/3Dmodel/gltf_exports/Level28-colored";
 import Level29 from "@/components/3Dmodel/gltf_exports/Level29-colored";
 import Level30 from "@/components/3Dmodel/gltf_exports/Level30-colored";
 
+import BG5 from "@/components/3Dmodel/BG5.jsx";
+import NewBG from "@/components/3Dmodel/Scale2-oneside.jsx";
+
 const ModelContainer = ({ model: ModelComponent, play, ...props }) => {
   return (
     <group {...props}>
@@ -44,7 +47,7 @@ const ModelContainer = ({ model: ModelComponent, play, ...props }) => {
 
 function CameraControls() {
   const { camera } = useThree();
-  camera.position.set(0, 3, 15);
+  camera.position.set(0, 5, 15);
 }
 
 const Three = () => {
@@ -136,19 +139,17 @@ const Three = () => {
       <Navbar />
       <div className="mt-8 flex flex-wrap gap-4 mx-auto justify-evenly items-center">
         <div className="w-3/5 shadow-2xl border-2 border-teal-500">
-          <Canvas
-            style={{ width: "100%", height: "500px", borderRadius: "8px" }}
-          >
+          <Canvas style={{ width: "100%", height: "500px" }}>
             <ambientLight intensity={0.5} />
             <directionalLight intensity={2.2} position={[10, 10, 5]} />
             <CameraControls />
+            <NewBG position={[0, -6, -3]} />
             <ModelContainer
               model={CurrentModel}
-              position={[0, -6, 0]}
+              position={[0, -5.5, 0]}
               play={warning}
             />
-
-            <OrbitControls />
+            <OrbitControls autoRotate />
           </Canvas>
         </div>
         <div className="flex flex-col w-1/4 space-y-10">
